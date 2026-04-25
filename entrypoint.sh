@@ -36,7 +36,7 @@ echo (int)\$pdo->query('SELECT COUNT(*) FROM vacancy')->fetchColumn();
 " 2>/dev/null || echo 0)
 
 if [ "$COUNT" = "0" ]; then
-    echo "[entrypoint] Таблица пуста — запускаю seed..."
+    echo "[entrypoint] Таблица пуста - запускаю seed..."
     php /app/yii seed/run 50 --interactive=0 || true
 else
     echo "[entrypoint] В таблице уже $COUNT записей, seed пропускаю."

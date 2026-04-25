@@ -8,6 +8,8 @@ REST API на Yii2 для сервиса управления вакансиям
 - **MySQL 8** - база данных
 - **Docker Compose** - оркестрация контейнеров
 - **Faker (русская локаль)** - генерация тестовых вакансий
+- **OpenAPI / Swagger UI** - интерактивная документация API (`/swagger/`)
+- **PHPUnit** - юнит-тесты + smoke-скрипт для API
 
 ## Endpoints
 
@@ -52,7 +54,26 @@ docker compose logs -f backend
 # 5. Проверяем что API живой
 curl http://localhost:8080/api/health
 curl 'http://localhost:8080/api/vacancies?per-page=3'
+
+# 6. Открываем Swagger UI в браузере
+# http://localhost:8080/swagger/
 ```
+
+### Если порт 3306 уже занят
+
+Ошибка `Bind for 0.0.0.0:3306 failed: port is already allocated`
+означает, что у вас уже работает локальный MySQL на 3306. Решение:
+поменяйте порт хоста в `.env`:
+
+```
+MYSQL_HOST_PORT=3307
+```
+
+И перезапустите: `docker compose down && docker compose up -d`. Бэк
+внутри контейнера всё равно будет ходить к MySQL на 3306, наружу
+порт пробрасывается на 3307. ТЗ при этом не нарушается, в задании
+сказано что БД на порту 3306, и она там и есть, просто внутри
+docker-сети.
 
 ## Структура проекта
 
@@ -129,6 +150,31 @@ docker compose exec backend tail -f runtime/logs/app.log
 
 # Подключаемся к БД из командной строки
 docker compose exec mysql mysql -uvacancies -p vacancies
+
+# Запуск тестов (PHPUnit) внутри контейнера
+docker compose exec backend ./vendor/bin/phpunit
+
+# Smoke-проверка API (bash + curl)
+bash tests/smoke.sh
+```
+
+## Документация API
+
+Swagger UI доступен сразу после запуска: http://localhost:8080/swagger/
+Спецификация в `web/swagger.yaml` (формат OpenAPI 3.0). Try it out
+работает прямо в браузере, можно тестировать эндпоинты без curl и Postman.
+
+## Тесты
+
+- **Юнит-тесты** в `tests/unit/VacancyTest.php` (PHPUnit).
+  Проверяют валидацию модели Vacancy без обращения к БД.
+- **Smoke-тесты API** в `tests/smoke.sh` (bash + curl).
+  Прогоняют все эндпоинты и сравнивают коды ответа.
+
+Запуск:
+```bash
+docker compose exec backend ./vendor/bin/phpunit
+bash tests/smoke.sh
 ```
 
 ## Стек на стороне фронта

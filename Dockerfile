@@ -17,7 +17,7 @@ COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# Сначала только composer.json/lock — кешируем слой зависимостей
+# Сначала только composer.json/lock - кешируем слой зависимостей
 COPY composer.json composer.lock* /app/
 RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-interaction || true
 
