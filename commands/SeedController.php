@@ -16,7 +16,7 @@ class SeedController extends Controller
 {
     /**
      * Генерирует $count случайных вакансий (русская локаль).
-     * Аналог Laravel — php artisan db:seed.
+     * Аналог Laravel - php artisan db:seed.
      */
     public function actionRun(int $count = 50): int
     {
@@ -49,8 +49,8 @@ class SeedController extends Controller
             'Ищем опытного разработчика для работы над крупным проектом в сфере e-commerce.',
             'Требуется специалист в быструю команду, которая создаёт внутренние инструменты для банка.',
             'В маркетплейс с нагрузкой 10 тысяч RPS нужен инженер в платформенную команду.',
-            'Наш продукт используют более 500 компаний, выходим на новые рынки — ищем сильного разработчика.',
-            'Финтех-стартап с международной командой расширяется — открыта вакансия.',
+            'Наш продукт используют более 500 компаний, выходим на новые рынки - ищем сильного разработчика.',
+            'Финтех-стартап с международной командой расширяется - открыта вакансия.',
             'IT-подразделение ритейл-сети ищет специалиста для проекта цифровизации.',
             'Команда из 40 человек разрабатывает облачную SaaS-платформу для HR. Нужен новый человек.',
             'Приглашаем на удалёнку разработчика в продуктовую компанию с офисом в Москве и Белграде.',
@@ -79,13 +79,13 @@ class SeedController extends Controller
             "Бонусы:\n- Компенсация спортзала и психолога\n- 28 дней отпуска + 5 дней sick-leave\n- Hackathon раз в полгода с призовым фондом\n- Опционы для сотрудников после 1 года работы",
         ];
 
-        // TRUNCATE вместо deleteAll — сбрасывает AUTO_INCREMENT чтобы id снова начинались с 1
+        // TRUNCATE вместо deleteAll - сбрасывает AUTO_INCREMENT чтобы id снова начинались с 1
         \Yii::$app->db->createCommand()->truncateTable(Vacancy::tableName())->execute();
         $this->stdout("Таблица очищена, auto_increment сброшен\n");
 
         for ($i = 0; $i < $count; $i++) {
             $v = new Vacancy();
-            $v->title = $titles[array_rand($titles)] . ' — ' . $faker->company();
+            $v->title = $titles[array_rand($titles)] . ' - ' . $faker->company();
             $v->description = implode("\n\n", [
                 $intros[array_rand($intros)],
                 $duties[array_rand($duties)],

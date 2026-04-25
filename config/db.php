@@ -1,7 +1,7 @@
 <?php
 /**
  * Подключение к БД. Параметры берём из переменных окружения (DOCKER-контейнер).
- * В Laravel аналог — config/database.php + .env.
+ * В Laravel аналог - config/database.php + .env.
  */
 return [
     'class' => \yii\db\Connection::class,

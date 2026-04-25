@@ -5,14 +5,14 @@ use yii\rest\Controller;
 use yii\web\Response;
 
 /**
- * Служебный контроллер — health-check и обработчик ошибок.
- * /api/health — для проверки живости сервиса
- * /site/error — куда errorHandler отправляет неперехваченные ошибки
+ * Служебный контроллер - health-check и обработчик ошибок.
+ * /api/health - для проверки живости сервиса
+ * /site/error - куда errorHandler отправляет неперехваченные ошибки
  */
 class SiteController extends Controller
 {
     /**
-     * Отключаем встроенные authenticator / rateLimiter из yii\rest\Controller —
+     * Отключаем встроенные authenticator / rateLimiter из yii\rest\Controller -
      * в учебном стенде нет авторизации, а RateLimiter требует настроенный user-компонент.
      */
     public function behaviors(): array

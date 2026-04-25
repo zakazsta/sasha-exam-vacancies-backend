@@ -63,7 +63,7 @@ $config = [
                     'prefix' => 'api',
                     'only' => ['index', 'view', 'create'],  // GET list, GET one, POST create
                 ],
-                // Прочие служебные роуты — можно не объявлять
+                // Прочие служебные роуты - можно не объявлять
                 'GET /api/health' => 'site/health',
                 'GET /site/error' => 'site/error',
             ],

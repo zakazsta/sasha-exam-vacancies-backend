@@ -15,7 +15,7 @@ use yii\web\Response;
  *  ПАРАЛЛЕЛИ С LARAVEL
  * ==================================================================
  *  - yii\rest\ActiveController  ↔  Laravel API resource controller
- *    (index, view, create, update, delete из коробки — как Route::apiResource)
+ *    (index, view, create, update, delete из коробки - как Route::apiResource)
  *
  *  - ActiveDataProvider         ↔  $model->paginate(10)->sortable()
  *    (сортировка + пагинация автоматом из query-параметров)
@@ -28,9 +28,9 @@ use yii\web\Response;
  *
  *  ENDPOINTS
  *  --------
- *  GET  /api/vacancies?sort=-created_at&page=2&per-page=10 — список
- *  GET  /api/vacancies/{id}                               — одна вакансия
- *  POST /api/vacancies   body: {title, description, salary} — создание
+ *  GET  /api/vacancies?sort=-created_at&page=2&per-page=10 - список
+ *  GET  /api/vacancies/{id}                               - одна вакансия
+ *  POST /api/vacancies   body: {title, description, salary} - создание
  *
  * ==================================================================
  */
@@ -39,7 +39,7 @@ class VacancyController extends ActiveController
     public $modelClass = Vacancy::class;
 
     /**
-     * Переопределяем набор действий — выключаем update/delete
+     * Переопределяем набор действий - выключаем update/delete
      * (в ТЗ экзамена они не требуются).
      * В Laravel аналогичный эффект: Route::apiResource(...)->only(['index','show','store']).
      */
@@ -50,7 +50,7 @@ class VacancyController extends ActiveController
         // Убираем PUT/DELETE
         unset($actions['update'], $actions['delete'], $actions['options']);
 
-        // Кастомная data-provider для index — чтобы задать правила сортировки и пагинации.
+        // Кастомная data-provider для index - чтобы задать правила сортировки и пагинации.
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
 
         return $actions;
@@ -58,7 +58,7 @@ class VacancyController extends ActiveController
 
     /**
      * Разрешённые глаголы на каждое действие.
-     * Если придёт PUT на /api/vacancies/5 — Yii вернёт 405 Method Not Allowed.
+     * Если придёт PUT на /api/vacancies/5 - Yii вернёт 405 Method Not Allowed.
      */
     protected function verbs(): array
     {
@@ -70,7 +70,7 @@ class VacancyController extends ActiveController
     }
 
     /**
-     * Настройка ActiveDataProvider — фабрика списка с сортировкой и пагинацией.
+     * Настройка ActiveDataProvider - фабрика списка с сортировкой и пагинацией.
      *
      * По ТЗ на фронте: сортировка через dropdown + переключатель направления.
      * Yii2 автоматически понимает параметр ?sort=field или ?sort=-field (минус = DESC).
@@ -108,7 +108,7 @@ class VacancyController extends ActiveController
                 'application/json' => Response::FORMAT_JSON,
             ],
         ];
-        // У нас нет авторизации и rate-limit (учебный стенд) — отключаем встроенные
+        // У нас нет авторизации и rate-limit (учебный стенд) - отключаем встроенные
         // фильтры yii\rest\Controller, иначе они требуют настроенный `user`-компонент.
         unset($behaviors['authenticator'], $behaviors['rateLimiter']);
         return $behaviors;

@@ -1,7 +1,7 @@
 <?php
 /**
  * Входная точка веб-приложения.
- * Аналог Laravel — public/index.php.
+ * Аналог Laravel - public/index.php.
  */
 
 defined('YII_DEBUG') or define('YII_DEBUG', getenv('YII_DEBUG') === 'true');

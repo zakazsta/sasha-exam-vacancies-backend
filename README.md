@@ -1,13 +1,13 @@
-# Backend сервиса вакансий — Yii2 + MySQL
+# Backend сервиса вакансий - Yii2 + MySQL
 
 REST API на Yii2 для сервиса управления вакансиями. Разворачивается одной командой в Docker.
 
 ## Что внутри
 
-- **Yii2** (PHP 8.1+) — REST API
-- **MySQL 8** — база данных
-- **Docker Compose** — оркестрация контейнеров
-- **Faker (русская локаль)** — генерация тестовых вакансий
+- **Yii2** (PHP 8.1+) - REST API
+- **MySQL 8** - база данных
+- **Docker Compose** - оркестрация контейнеров
+- **Faker (русская локаль)** - генерация тестовых вакансий
 
 ## Endpoints
 
@@ -25,13 +25,13 @@ REST API на Yii2 для сервиса управления вакансиям
 
 ## Где разворачивать
 
-**Локально — на своей машине.** Все команды ниже работают на вашем компьютере
+**Локально - на своей машине.** Все команды ниже работают на вашем компьютере
 через Docker. На выходе сервис будет доступен по `http://localhost:8080`.
 
-Если нужно выложить в интернет (production) — поднимаете любой VPS с Docker
+Если нужно выложить в интернет (production) - поднимаете любой VPS с Docker
 (Selectel, Timeweb, Reg.ru, Yandex Cloud и т.д.) и накатываете тот же
 `docker compose up -d` поверх него. Никакой специфической нашей инфраструктуры
-проект не использует — только Docker и публичный порт.
+проект не использует - только Docker и публичный порт.
 
 ## Запуск с нуля
 
@@ -102,9 +102,9 @@ mkdir -p commands config controllers migrations models services web
 
 # 5. Создаём web/index.php (точка входа), config/web.php (конфиг),
 #    config/db.php (БД), yii (CLI), Dockerfile, entrypoint.sh,
-#    docker-compose.yml — содержимое можно скопировать из этого репо.
+#    docker-compose.yml - содержимое можно скопировать из этого репо.
 
-# 6. Пишем модель Vacancy с rules() — backend/models/Vacancy.php
+# 6. Пишем модель Vacancy с rules() - backend/models/Vacancy.php
 # 7. Создаём миграцию командой: ./yii migrate/create create_vacancy_table
 # 8. Описываем VacancyController extends yii\rest\ActiveController
 # 9. Прописываем роут в config/web.php → urlManager.rules
@@ -118,7 +118,7 @@ mkdir -p commands config controllers migrations models services web
 # Войти в контейнер бэкенда
 docker compose exec backend sh
 
-# Внутри контейнера — миграции
+# Внутри контейнера - миграции
 docker compose exec backend ./yii migrate
 
 # Перегенерация тестовых данных (50 вакансий)

@@ -12,11 +12,11 @@ use yii\db\Expression;
  *  ВАЖНО ДЛЯ ЗАЩИТЫ: ЗАЧЕМ ACTIVE RECORD И КОГДА ОН УСТАРЕЛ
  * ==================================================================
  *
- * Active Record — паттерн, где одна PHP-модель одновременно:
+ * Active Record - паттерн, где одна PHP-модель одновременно:
  *   1) представляет строку таблицы (атрибуты = поля),
  *   2) умеет себя читать/писать в БД (save, delete, find).
  *
- * В Laravel это Eloquent, в Symfony — Doctrine (Data Mapper), в Django — тоже AR.
+ * В Laravel это Eloquent, в Symfony - Doctrine (Data Mapper), в Django - тоже AR.
  *
  * Спор «AR устарел vs нет»:
  *   - Противники: AR смешивает доменную логику с инфраструктурной (SQL),
@@ -28,7 +28,7 @@ use yii\db\Expression;
  * а всю нетривиальную логику выносим в Service-классы (@see services/VacancyService.php).
  * Получаем: читабельность AR + тестируемость и разделение ответственности.
  *
- * Если на защите спросят «почему не Repository+PDO?» — ответ:
+ * Если на защите спросят «почему не Repository+PDO?» - ответ:
  * «для CRUD с 3 полями это overengineering. Repository даёт выигрыш когда:
  *  (а) логика поверх нескольких моделей, (б) нужны строгие тесты домена,
  *  (в) источников данных больше одного (SQL + API + очередь).»
@@ -46,7 +46,7 @@ class Vacancy extends ActiveRecord
 {
     /**
      * Имя таблицы. По умолчанию Yii делает snake_case от имени класса,
-     * но явно указать — хорошая привычка (облегчает рефакторинг).
+     * но явно указать - хорошая привычка (облегчает рефакторинг).
      */
     public static function tableName(): string
     {
@@ -55,7 +55,7 @@ class Vacancy extends ActiveRecord
 
     /**
      * Автоматические поля created_at / updated_at.
-     * Аналог Laravel — $timestamps = true в Eloquent.
+     * Аналог Laravel - $timestamps = true в Eloquent.
      */
     public function behaviors(): array
     {
@@ -76,7 +76,7 @@ class Vacancy extends ActiveRecord
      *   2) Отдельный класс-форма `VacancyForm extends yii\base\Model`
      *      (чище, но больше кода).
      *
-     * Для учебного примера держим в модели — быстро и понятно.
+     * Для учебного примера держим в модели - быстро и понятно.
      */
     public function rules(): array
     {
@@ -109,7 +109,7 @@ class Vacancy extends ActiveRecord
 
     /**
      * Явный список полей, которые отдаём в REST-ответе.
-     * Без этого Yii вернёт всё, включая служебные. Аналог Laravel — Resource.
+     * Без этого Yii вернёт всё, включая служебные. Аналог Laravel - Resource.
      */
     public function fields(): array
     {
