@@ -1,0 +1,31 @@
+{
+    "name": "sasha-exam/vacancies-backend",
+    "description": "Сервис управления вакансиями (экзаменационное задание на Yii2)",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1",
+        "yiisoft/yii2": "~2.0.48",
+        "fakerphp/faker": "^1.23"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": ""
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "minimum-stability": "stable"
+}

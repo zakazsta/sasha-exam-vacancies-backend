@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Yii command line bootstrap (консольный вход).
+ *
+ * Запуск: ./yii migrate, ./yii seed/run и т.п.
+ */
+defined('YII_DEBUG') or define('YII_DEBUG', getenv('YII_DEBUG') === 'true');
+defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');
+
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
+
+$config = require __DIR__ . '/config/console.php';
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
+exit($exitCode);
